@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:homework5/Pages/todo.dart';
 
 
 class mytodoPage extends StatefulWidget {
@@ -9,6 +10,23 @@ class mytodoPage extends StatefulWidget {
   @override
   State<mytodoPage> createState() => _mytodoPageState();
 }
+List<ToDo> todoList = [
+  ToDo(
+    id: '01',
+    todoText: 'ทำการบ้านครั้งที่ 4 วิชา Mobile App Dev',
+    done: true,
+  ),
+  ToDo(
+    id: '02',
+    todoText: 'ทำการบ้านครั้งที่ 5 วิชา Mobile App Dev',
+    done: false,
+  ),
+  ToDo(
+    id: '03',
+    todoText: 'ทำโปรเจ็ควิชา Mobile App Dev',
+    done: false,
+  ),
+];
 
 class _mytodoPageState extends State<mytodoPage> {
   List<bool> _list=[];
@@ -16,7 +34,12 @@ class _mytodoPageState extends State<mytodoPage> {
   bool _homework5 = false;
   bool _project = false;
   final _input = TextEditingController();
+
   void _handleDelete(){
+
+  }
+  void _addToDo(String toDo) {
+
   }
   @override
   Widget build(BuildContext context) {
@@ -194,38 +217,47 @@ class _mytodoPageState extends State<mytodoPage> {
               ),
             ],
           ),
-          Row(
-            children: [
-              Expanded(
-                child:
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child:
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
+          Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: <Widget>[
+                  Flexible(
                     child: TextField(
                       controller: _input,
-                      decoration: const InputDecoration(
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Enter new ToDo',
                       ),
                     ),
-
                   ),
-                ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        //_addToDoItem(_controller.text);
+                      });
+                    },
+                    child: Container(
+                        width: 50.0,
+                        height: 30.0,
+                        alignment: Alignment.center,
+                        child: Text(
+                          'ADD',
+                          style: TextStyle(
+                            color: Colors.blue,
+                          ),
+                        )),
+                    customBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                ],
               ),
-              /*Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: FlatButton(
-                  onPressed: _handleDelete,
-                  child: const Text('ADD'),
-                ),
-              ),*/
-            ],
+            ),
           ),
         ],
       ),
